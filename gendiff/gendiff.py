@@ -1,22 +1,32 @@
 import json
 
 
-def load_json_object_in_dict(file_object):
-    f = open('file_object')
+def create_a_string_of_diff(dct1, dct2, key):
+    if dct1.get(key) == dct2.get(key):
+        return f'    {key}: {dct1[key]}\n'
+    elif key in dct1 and key in dct2:
+        return f'  - {key}: {dct1[key]}\n  + {key}: {dct2[key]}\n'
+    elif key in dct1:
+        return f'  - {key}: {dct1[key]}\n'
+    else:
+        return f'  + {key}: {dct2[key]}\n'
 
-    string_of_file = json.load(f)
 
-    #read string by string
+def generate_gendiff(file1, file2):
+    dct_from_file1 = json.load(open(file1))
+    dct_from_file2 = json.load(open(file2))
 
-    f.close()
+    lst_of_keys = list(set(
+        list(dct_from_file1.keys()) + list(dct_from_file2.keys()))
+        )
+    lst_of_keys.sort()
 
-    return file_dict
+    result_strings = '{\n'
+    for key in lst_of_keys:
+        string_of_diff = create_a_string_of_diff(
+            dct_from_file1, dct_from_file2, key
+            )
+        result_strings += string_of_diff
+    result_strings += '}'
 
-
-def generate_gendiff(file_path1, file_path2):
-    dict_for_diff_1 = load_json_object_in_dict(file_path1)
-    dict_for_diff_2 = load_json_object_in_dict(file_path2)
-
-    string_of_diff = f''
-
-    return string_of_diff
+    return result_strings
