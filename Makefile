@@ -18,3 +18,11 @@ install:
 
 package-install:
 	python3 -m pip install --user dist/*.whl
+
+selfcheck:
+	poetry check
+
+test:
+	poetry run pytest
+
+check: selfcheck test lint
