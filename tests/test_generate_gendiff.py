@@ -1,4 +1,4 @@
-from gendiff.module_gendiff import generate_gendiff, create_a_string_of_diff
+from gendiff.module_gendiff import generate_gendiff
 
 file1_json_for_test = 'fixtures/file1_for_test.json'
 file2_json_for_test = 'fixtures/file2_for_test.json'
