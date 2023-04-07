@@ -8,8 +8,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
-     matrix:
-        python-version: [3.10]
+      matrix:
+        python-version: [3.11]
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.python-version }}
@@ -22,7 +22,7 @@ jobs:
           pip install poetry
           make install
       - name: Run linter and pytest
-      - run: |
+        run: |
           make chek
         # Test & publish code coverage
       - name: Test & publish code coverage
