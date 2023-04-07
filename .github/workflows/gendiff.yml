@@ -10,7 +10,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
         # make dependens on poetry
       - name: Install dependencies
         run: |
