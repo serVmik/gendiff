@@ -10,7 +10,7 @@ gendiff-files-from-test:
 lint:
 	poetry run flake8 gendiff
 
-build:
+build: check
 	poetry build
 
 publish:
