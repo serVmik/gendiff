@@ -1,8 +1,11 @@
 gendiff:
 	poetry run gendiff
 
-gendiff-files:
-	poetry run gendiff file1.json file2.json
+gendiff-files-json:
+	poetry run gendiff filepath1.json filepath2.json
+
+gendiff-files-yml:
+	poetry run gendiff filepath1.yml filepath2.yaml
 
 gendiff-files-from-test:
 	poetry run gendiff tests/fixtures/file1_for_test.json tests/fixtures/file2_for_test.json
