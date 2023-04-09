@@ -12,7 +12,7 @@ def get_dct_from_file(file_):
     elif type_of_file == 'yml' or type_of_file == 'yaml':
         dct_from_file = yaml.safe_load(open(file_, 'r'))
     else:
-        return print('Unsupported file format entered')
+        raise Exception('Unsupported file format entered!')
 
     return dct_from_file
 
