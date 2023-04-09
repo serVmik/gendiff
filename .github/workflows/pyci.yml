@@ -9,13 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Python
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
         # make depends on poetry
       - name: Install dependencies
         run: |
           pip install poetry
-          pip install PyYAML
           make install
         # Run linter and pytest
       - name: Run linter and pytest
