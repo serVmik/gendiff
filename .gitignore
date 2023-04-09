@@ -4,8 +4,4 @@ dist/
 for developer/
 .coverage
 coverage.xml
-filepath1.json
-filepath2.json
-filepath1.yml
-filepath2.yaml
-
+for_developer/
