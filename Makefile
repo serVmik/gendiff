@@ -7,29 +7,27 @@ gendiff-files-json:
 gendiff-files-yml:
 	poetry run gendiff filepath1.yml filepath2.yaml
 
-gendiff-files-from-test:
-	poetry run gendiff tests/fixtures/file1_for_test.json tests/fixtures/file2_for_test.json
-
-lint:
-	poetry run flake8 gendiff
-
 build:
 	poetry build
-
-publish:
-	poetry publish --dry-run
 
 install:
 	poetry install
 
+publish:
+	poetry publish --dry-run
+
 package-install:
 	python3 -m pip install --user dist/*.whl
 
+lint:
+	poetry run flake8 gendiff
+
+test: lint
+	poetry run pytest
+	poetry run pytest --cov
+
 selfcheck:
 	poetry check
-
-test:
-	poetry run pytest
 
 test-coverage:
 	poetry run pytest --cov=gendiff --cov-report xml
