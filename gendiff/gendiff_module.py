@@ -16,9 +16,7 @@ def get_dct_from_file(file_):
     return dct_from_file
 
 
-def generate_gendiff(file1, file2):
-    dct_from_file1 = get_dct_from_file(file1)
-    dct_from_file2 = get_dct_from_file(file2)
+def create_lst_of_actions(dct_from_file1, dct_from_file2):
     lst_of_actions_for_dct_key = sorted(list(
         set(dct_from_file1.keys()).union(dct_from_file2.keys())
     ))
@@ -33,7 +31,18 @@ def generate_gendiff(file1, file2):
         else:
             lst_of_actions_for_dct_key[index] = (key, 'added')
 
+    return lst_of_actions_for_dct_key
+
+
+def generate_gendiff(file1, file2):
+    dct_from_file1 = get_dct_from_file(file1)
+    dct_from_file2 = get_dct_from_file(file2)
+
+    lst_of_actions_for_dct_key = create_lst_of_actions(
+        dct_from_file1, dct_from_file2
+    )
     result_string = create_a_string_of_diff(
-        dct_from_file1, dct_from_file2, lst_of_actions_for_dct_key)
+        dct_from_file1, dct_from_file2, lst_of_actions_for_dct_key
+    )
 
     return result_string
