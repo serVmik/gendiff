@@ -28,7 +28,7 @@ package-install:
 lint:
 	poetry run flake8 gendiff
 
-test: lint
+test:
 	poetry run pytest
 	poetry run pytest --cov
 
