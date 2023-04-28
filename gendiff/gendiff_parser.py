@@ -1,24 +1,16 @@
-def create_a_string_of_diff(dct1, dct2, lst_of_actions_for_dct_key):
-    result_string_in_lst = ['{\n']
+from gendiff.gendiff_tools import get_dct_from_file
+from gendiff.formatter_flat import parse_flat
+from gendiff.output_diff_flat import create_a_string_of_diff
 
-    for action_for_dct_key in lst_of_actions_for_dct_key:
-        key, action = action_for_dct_key[0], action_for_dct_key[1]
 
-        if action == 'equal':
-            result_string_in_lst.append(f'    {key}: {dct1[key]}\n')
+def generate_gendiff(file1, file2):
+    dct_from_file1 = get_dct_from_file(file1)
+    dct_from_file2 = get_dct_from_file(file2)
 
-        elif action == 'changed':
-            result_string_in_lst.append(f'  - {key}: {dct1[key]}\n')
-            result_string_in_lst.append(f'  + {key}: {dct2[key]}\n'
-)
-        elif action == 'removed':
-            result_string_in_lst.append(f'  - {key}: {dct1[key]}\n')
+    lst_of_diff = parse_flat(dct_from_file1, dct_from_file2)
 
-        elif action == 'added':
-            result_string_in_lst.append(f'  + {key}: {dct2[key]}\n')
-
-    result_string_in_lst.append('}')
-
-    result_string = ''.join(result_string_in_lst)
+    result_string = create_a_string_of_diff(
+        dct_from_file1, dct_from_file2, lst_of_diff
+        )
 
     return result_string

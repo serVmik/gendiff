@@ -1,5 +1,5 @@
 import pytest
-from gendiff.gendiff_module import generate_gendiff
+from gendiff.gendiff_parser import generate_gendiff
 
 
 @pytest.mark.parametrize("file1, file2", [
