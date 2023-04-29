@@ -1,24 +1,23 @@
-def create_line(lst_of_lines, indent, key, action, dct1, dct2):
+def create_line(indent, diff, dct1, dct2):
+    key, action = diff[0], diff[1]
+
     if action == 'equal':
-        lst_of_lines.append(f'{indent}  {key}: {dct1[key]}')
+        return f'{indent}  {key}: {dct1[key]}'
 
     elif action == 'changed':
-        lst_of_lines.append(f'{indent}- {key}: {dct1[key]}')
-        lst_of_lines.append(f'{indent}+ {key}: {dct2[key]}')
+        return f'{indent}- {key}: {dct1[key]}\n{indent}+ {key}: {dct2[key]}'
 
     elif action == 'removed':
-        lst_of_lines.append(f'{indent}- {key}: {dct1[key]}')
+        return f'{indent}- {key}: {dct1[key]}'
 
     else:
         # action == 'added':
-        lst_of_lines.append(f'{indent}+ {key}: {dct2[key]}')
-
-    return lst_of_lines
+        return f'{indent}+ {key}: {dct2[key]}'
 
 
 def create_a_string_of_diff(dct1, dct2, lst_of_diff):
     INDENT = '  '
-    INDENT_IN_DEPTH = '  '
+    INDENT_IN_DEPTH = '    '
     DEPTH_START_WITH = 0
 
     def join_lines_of_diff(depth):
@@ -31,9 +30,7 @@ def create_a_string_of_diff(dct1, dct2, lst_of_diff):
             if len(key) > 2:
                 make_lines(key, depth + 1)
 
-            lst_of_lines = create_line(
-                lst_of_lines, indent, key, action, dct1, dct2
-            )
+            lst_of_lines.append(create_line(indent, diff, dct1, dct2))
 
         lst_of_lines.append('}')
 
