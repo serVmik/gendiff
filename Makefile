@@ -1,6 +1,9 @@
 gendiff:
 	poetry run gendiff
 
+gendiff-stylish:
+	poetry run gendiff_stylish for_developer/file1.json for_developer/file2.json
+
 gendiff-files:
 	poetry run gendiff for_developer/file1.json for_developer/file2.json
 
