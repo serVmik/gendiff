@@ -57,5 +57,5 @@ def generate_gendiff(file1, file2):
     print(lst_of_diff)
 #
 #
-generate_gendiff(
-    '../for_developer/file1.json', '../for_developer/file2.json')
+# generate_gendiff(
+#     '../for_developer/file1.json', '../for_developer/file2.json')
