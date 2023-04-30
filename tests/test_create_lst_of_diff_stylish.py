@@ -1,7 +1,7 @@
 import pytest
 from gendiff.formatter_stylish import create_lst_of_keys_stylish
 from gendiff.gendiff_tools import get_dct_from_file
-from tests.fixtures.expected_in_lst_of_diff import lst_of_diff
+from tests.fixtures.expected_in_lst_of_diff_stylish import lst_of_diff
 
 
 @pytest.mark.parametrize("file1, file2", [
