@@ -1,5 +1,6 @@
 from gendiff.gendiff_tools import get_dct_from_file
 from gendiff.gendiff_tools import create_lst_of_keys
+from gendiff.output_diff_stylich import create_string_of_diff_stylish
 
 
 def identify_change_of_line(key, dct1, dct2):
@@ -7,7 +8,9 @@ def identify_change_of_line(key, dct1, dct2):
         return 'equal'
 
     elif key in dct1 and key in dct2:
-        if isinstance(dct1[key], dict):
+        if isinstance(dct1[key], dict) and not isinstance(dct2[key], dict):
+            return 'changed'
+        elif isinstance(dct1[key], dict):
             return 'equal'
         else:
             return 'changed'
@@ -49,13 +52,12 @@ def generate_gendiff(file1, file2):
 
     lst_of_diff = create_lst_of_keys_stylish(dct_from_file1, dct_from_file2)
 
-    # result_string = create_lst_of_keys_stylish(
-    #     dct_from_file1, dct_from_file2, lst_of_diff
-    #     )
+    result_string = create_string_of_diff_stylish(
+        dct_from_file1, dct_from_file2, lst_of_diff
+    )
 
-    # return result_string
-    print(lst_of_diff)
-#
+    return result_string
+
 #
 # generate_gendiff(
 #     '../for_developer/file1.json', '../for_developer/file2.json')
