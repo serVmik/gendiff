@@ -17,3 +17,10 @@ def get_dct_from_file(file):
 
     else:
         raise Exception('Unsupported file format entered!')
+
+
+def convert_to_string(value):
+    return str(value).\
+        replace('None', 'null').\
+        replace('True', 'true').\
+        replace('False', 'false')
