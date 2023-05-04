@@ -1,51 +1,55 @@
 INDENT = '  '
 INDENT_IN_DEPTH = '    '
-DEPTH_START_WITH = 0
 STEP_OF_DEPTH = 1
+VALUE_IF_KEY_NOT_IN_DICT = {}
 
 
-def is_node(node):
+def is_node_parent(node):
     return not isinstance(node[0], list) and isinstance(node[-1], list)
 
 
-def create_text_to_print_in_one_string(dct1_in, dct2_in, lst_of_diff):
-    def create_line(dct1, dct2, node, depth):
-        indent = f'{INDENT}{INDENT_IN_DEPTH * depth}'
-        key, action = node[0], node[1]
-        print(f"key = {key}")
+def get_value_from_dct(dct1, dct2, node, depth_of_dct):
+    key = node[0]
 
-        if action == 'equal':
-            if is_node(node):
-                value1 = create_line_to_add(
-                    dct1.get(key), dct2.get(key),
-                    node[-1], depth + STEP_OF_DEPTH
-                )
-            else:
-                value1 = dct1.get(key)
-            return f'{indent}  {key}: {value1}'
-        elif action == 'changed':
-            return f'{indent}- {key}: {dct1}\n' \
-                   f'{indent}+ {key}: {dct2}'
-        elif action == 'removed':
-            return f'{indent}- {key}: {dct1}'
-        else:
-            # action == 'added':
-            return f'{indent}+ {key}: {dct2}'
+    if is_node_parent(node):
+        return make_lines(
+            dct1.get(key, VALUE_IF_KEY_NOT_IN_DICT),
+            dct2.get(key, VALUE_IF_KEY_NOT_IN_DICT),
+            node[-1], depth_of_dct + STEP_OF_DEPTH
+        )
+    elif key in dct1:
+        return dct1.get(key)
+    else:
+        # key in dct2:
+        return dct2.get(key)
 
-    def create_line_to_add(dct1, dct2, node, depth):
-        lst_of_lines = ['{']
 
-        for element in node:
+def create_line(dct1, dct2, node, depth_of_dct):
+    indent = f'{INDENT}{INDENT_IN_DEPTH * depth_of_dct}'
+    key, action = node[0], node[1]
 
-            lst_of_lines.append(
-                create_line(dct1, dct2, element, depth)
-            )
+    value1 = get_value_from_dct(dct1, dct2, node, depth_of_dct)
+    value2 = get_value_from_dct(dct2, dct1, node, depth_of_dct)
 
-        lst_of_lines.append(f'{INDENT_IN_DEPTH * depth}' + '}')
-        return '\n'.join(lst_of_lines)
+    if action == 'equal':
+        return f'{indent}  {key}: {value1}'
+    elif action == 'changed':
+        return f'{indent}- {key}: {value1}\n' \
+               f'{indent}+ {key}: {value2}'
+    elif action == 'removed':
+        return f'{indent}- {key}: {value1}'
+    else:
+        # action == 'added':
+        return f'{indent}+ {key}: {value2}'
 
-    print(f"lst_of_diff = {lst_of_diff}")
-    result_string = create_line_to_add(
-        dct1_in, dct2_in, lst_of_diff, DEPTH_START_WITH
-    )
-    return result_string
+
+def make_lines(dct1, dct2, node, depth_of_dct=0):
+    lst_of_lines = ['{']
+
+    for element in node:
+        lst_of_lines.append(
+            create_line(dct1, dct2, element, depth_of_dct)
+        )
+
+    lst_of_lines.append(f'{INDENT_IN_DEPTH * depth_of_dct}' + '}')
+    return '\n'.join(lst_of_lines)
