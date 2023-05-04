@@ -1,3 +1,5 @@
+from gendiff.gendiff_tools import convert_to_string
+
 INDENT = '  '
 INDENT_IN_DEPTH = '    '
 STEP_OF_DEPTH = 1
@@ -18,10 +20,10 @@ def get_value_from_dct(dct1, dct2, node, depth_of_dct):
             node[-1], depth_of_dct + STEP_OF_DEPTH
         )
     elif key in dct1:
-        return dct1.get(key)
+        return convert_to_string(dct1.get(key))
     else:
         # key in dct2:
-        return dct2.get(key)
+        return convert_to_string(dct2.get(key))
 
 
 def create_line(dct1, dct2, node, depth_of_dct):
