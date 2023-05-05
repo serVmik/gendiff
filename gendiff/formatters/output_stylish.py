@@ -14,7 +14,7 @@ def create_line(dct1, dct2, node, depth_of_dct):
         value_for_add = dct.get(key)
 
         if isinstance(value_for_add, dict):
-            return make_lines(
+            return create_output_stylish(
                 dct1.get(key, VALUE_IF_KEY_NOT_IN_DICT),
                 dct2.get(key, VALUE_IF_KEY_NOT_IN_DICT),
                 node[-1], depth_of_dct + STEP_OF_DEPTH
@@ -60,7 +60,7 @@ def create_line(dct1, dct2, node, depth_of_dct):
         return f'{indent}+ {key}:{space_after_key_0}{value}'
 
 
-def make_lines(dct1, dct2, lst_of_diff, depth_of_dct=0):
+def create_output_stylish(dct1, dct2, lst_of_diff, depth_of_dct=0):
     lst_of_lines = ['{']
 
     for element in lst_of_diff:

@@ -3,7 +3,8 @@ def create_line(key, action, dct1, dct2):
         return f'    {key}: {dct1[key]}'
 
     elif action == 'changed':
-        return f'  - {key}: {dct1[key]}\n  + {key}: {dct2[key]}'
+        return f'  - {key}: {dct1[key]}\n' \
+               f'  + {key}: {dct2[key]}'
 
     elif action == 'removed':
         return f'  - {key}: {dct1[key]}'
@@ -12,7 +13,7 @@ def create_line(key, action, dct1, dct2):
         return f'  + {key}: {dct2[key]}'
 
 
-def create_a_string_of_diff(dct1, dct2, lst_of_diff):
+def create_output_flat(dct1, dct2, lst_of_diff):
     lst_of_lines = ['{']
 
     for diff in lst_of_diff:

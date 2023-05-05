@@ -2,16 +2,10 @@ gendiff:
 	poetry run gendiff
 
 gendiff-files:
-	poetry run gendiff for_developer/file1.json for_developer/file2.json
+	poetry run gendiff tests/fixtures/file1.json tests/fixtures/file2.json
 
-gendiff-files-json:
-	poetry run gendiff for_developer/filepath1.json for_developer/filepath2.json
-
-gendiff-files-yml:
-	poetry run gendiff for_developer/filepath1.yml for_developer/filepath2.yaml
-
-gendiff-test:
-	poetry run gendiff tests/fixtures/file1_for_test.json tests/fixtures/file2_for_test.json
+gendiff-files-flat:
+	poetry run gendiff --format flat tests/fixtures/file1.json tests/fixtures/file2.json
 
 build:
 	poetry build
@@ -31,6 +25,7 @@ lint:
 test:
 	poetry run pytest -vv
 	poetry run pytest --cov
+	poetry run flake8 gendiff
 
 selfcheck:
 	poetry check

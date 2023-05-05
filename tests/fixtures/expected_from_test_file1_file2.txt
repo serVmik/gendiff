@@ -1,7 +1,0 @@
-{
-    1: it is in the first and second file
-  - 2: it is only in the first file
-  + 3: it is only in the second file
-  - 4: it is from the first file
-  + 4: it is from the second file
-}
