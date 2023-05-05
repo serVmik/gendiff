@@ -3,7 +3,7 @@ from gendiff.gendiff_tools import create_lst_of_keys
 from gendiff.output_diff_stylish import make_lines
 
 
-def identify_change_of_line(key, dct1, dct2):
+def make_marker_for_diff(key, dct1, dct2):
     if dct1.get(key) == dct2.get(key):
         return 'equal'
 
@@ -13,7 +13,7 @@ def identify_change_of_line(key, dct1, dct2):
         ):
             return 'changed'
         elif isinstance(dct1.get(key), dict):
-            return 'equal'
+            return 'without_marker'
         else:
             return 'changed'
 
@@ -31,7 +31,7 @@ def create_lst_of_keys_stylish(dct1, dct2):
     for index, key in enumerate(lst_of_diff_stylish):
         lst_of_diff_stylish[index] = [
             key,
-            identify_change_of_line(key, dct1, dct2)
+            make_marker_for_diff(key, dct1, dct2)
         ]
         if isinstance(dct1.get(key), dict) and isinstance(dct2.get(key), dict):
             lst_of_diff_stylish[index].append(
@@ -57,7 +57,3 @@ def generate_gendiff(file1, file2):
 
     result_string = make_lines(dct_from_file1, dct_from_file2, lst_of_diff)
     return result_string
-
-
-# print(generate_gendiff(
-#     '../for_developer/file1.json', '../for_developer/file2.json'))

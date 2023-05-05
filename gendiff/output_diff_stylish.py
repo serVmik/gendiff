@@ -8,7 +8,7 @@ VALUE_IF_KEY_NOT_IN_DICT = {}
 
 def create_line(dct1, dct2, node, depth_of_dct):
     indent = f'{INDENT}{INDENT_IN_DEPTH * depth_of_dct}'
-    key, action = node[0], node[1]
+    key, marker = node[0], node[1]
 
     def get_value_for_add(dct):
         value_for_add = dct.get(key)
@@ -22,36 +22,42 @@ def create_line(dct1, dct2, node, depth_of_dct):
         else:
             return convert_to_string(value_for_add)
 
-    def get_value_for_create_line(value_for_create_line):
-        if value_for_create_line == 0:
+    def get_value_for_create_line(number_of_dct=0):
+        if number_of_dct == 0:
             if key in dct1:
-                return get_value_for_create_line(value_for_create_line=1)
+                return get_value_for_create_line(number_of_dct=1)
             else:
-                return get_value_for_create_line(value_for_create_line=2)
+                return get_value_for_create_line(number_of_dct=2)
 
-        elif value_for_create_line == 1:
+        elif number_of_dct == 1:
             return get_value_for_add(dct1)
         else:
             return get_value_for_add(dct2)
 
-    value = get_value_for_create_line(value_for_create_line=0)
+    value = get_value_for_create_line()
+    space_after_key_0 = space_after_key_1 = space_after_key_2 = ' '
+    if not value:
+        space_after_key_0 = ''
 
-    if action == 'changed':
-        value1 = get_value_for_create_line(value_for_create_line=1)
-        value2 = get_value_for_create_line(value_for_create_line=2)
+    if marker == 'changed':
+        value1 = get_value_for_create_line(number_of_dct=1)
+        value2 = get_value_for_create_line(number_of_dct=2)
+        if not value1:
+            space_after_key_1 = ''
+        if not value2:
+            space_after_key_2 = ''
+        return f'{indent}- {key}:{space_after_key_1}{value1}\n' \
+               f'{indent}+ {key}:{space_after_key_2}{value2}'
 
-        return f'{indent}- {key}: {value1}\n' \
-               f'{indent}+ {key}: {value2}'
+    elif marker == 'equal' or marker == 'without_marker':
+        return f'{indent}  {key}:{space_after_key_0}{value}'
 
-    elif action == 'equal':
-        return f'{indent}  {key}: {value}'
-
-    elif action == 'removed':
-        return f'{indent}- {key}: {value}'
+    elif marker == 'removed':
+        return f'{indent}- {key}:{space_after_key_0}{value}'
 
     else:
-        # action == 'added':
-        return f'{indent}+ {key}: {value}'
+        # marker == 'added':
+        return f'{indent}+ {key}:{space_after_key_0}{value}'
 
 
 def make_lines(dct1, dct2, lst_of_diff, depth_of_dct=0):

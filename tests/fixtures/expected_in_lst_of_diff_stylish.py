@@ -1,5 +1,5 @@
 lst_of_diff = [
-    ['common', 'equal', [
+    ['common', 'without_marker', [
         ['follow', 'added'],
         ['setting1', 'equal'],
         ['setting2', 'removed'],
@@ -9,8 +9,8 @@ lst_of_diff = [
             ['key5', 'equal']
         ]
          ],
-        ['setting6', 'equal', [
-            ['doge', 'equal', [
+        ['setting6', 'without_marker', [
+            ['doge', 'without_marker', [
                 ['wow', 'changed']
             ]
              ],
@@ -20,7 +20,7 @@ lst_of_diff = [
          ]
     ]
      ],
-    ['group1', 'equal', [
+    ['group1', 'without_marker', [
         ['baz', 'changed'],
         ['foo', 'equal'],
         ['nest', 'changed', [
