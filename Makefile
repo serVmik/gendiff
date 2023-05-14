@@ -4,8 +4,8 @@ gendiff:
 gendiff-files:
 	poetry run gendiff tests/fixtures/file1.json tests/fixtures/file2.json
 
-gendiff-files-flat:
-	poetry run gendiff --format flat tests/fixtures/file1.json tests/fixtures/file2.json
+gendiff-files-plain:
+	poetry run gendiff tests/fixtures/file1.json tests/fixtures/file2.json --format plain
 
 build:
 	poetry build

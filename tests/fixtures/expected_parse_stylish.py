@@ -44,7 +44,8 @@ lst_of_diff = [
             ]
              ]
         ]
-         ], ['fee', 'equal']
+         ],
+        ['fee', 'equal']
     ]
      ]
 ]
