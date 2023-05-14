@@ -24,3 +24,29 @@ def convert_to_string(value):
         replace('None', 'null').\
         replace('True', 'true').\
         replace('False', 'false')
+
+
+def make_marker_if_changed(dct1, dct2, key):
+    if isinstance(dct1.get(key), dict) and not isinstance(dct2.get(key), dict):
+        return 'changed'
+    if isinstance(dct1.get(key), dict):
+        return 'without_marker'
+    else:
+        return 'changed'
+
+
+def make_marker_for_diff(key, dct1, dct2):
+    if dct1.get(key) == dct2.get(key):
+        result = 'equal'
+
+    elif key in dct1 and key in dct2:
+        result = make_marker_if_changed(dct1, dct2, key)
+
+    elif key in dct1:
+        result = 'removed'
+
+    else:
+        # key in dct2:
+        result = 'added'
+
+    return result
