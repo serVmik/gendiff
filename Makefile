@@ -1,6 +1,9 @@
 gendiff:
 	poetry run gendiff
 
+debug:
+	poetry run debug_script
+
 gendiff-files:
 	poetry run gendiff tests/fixtures/file1.json tests/fixtures/file2.json
 
@@ -23,8 +26,7 @@ lint:
 	poetry run flake8 gendiff
 
 test:
-	poetry run pytest -vv
-	poetry run pytest --cov
+	poetry run pytest -vv --cov -s
 	poetry run flake8 gendiff
 
 selfcheck:

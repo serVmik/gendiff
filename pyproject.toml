@@ -14,6 +14,7 @@ pyyaml = "^6.0"
 
 [tool.poetry.scripts]
 gendiff = "gendiff.scripts.gendiff_script:main"
+debug_script = "gendiff.scripts.debug_script:main"
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^6.0.0"
