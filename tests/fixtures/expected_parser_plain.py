@@ -2,78 +2,42 @@ lst_dcts_of_diff = [
     {'property': 'common',
      'marker': 'without_marker',
      'nested': [
-         {'property': 'follow',
-          'marker': 'added'},
-         {'property': 'setting1',
-          'marker': 'equal'},
-         {'property': 'setting2',
-          'marker': 'removed'},
-         {'property': 'setting3',
-          'marker': 'changed'},
-         {'property': 'setting4',
-          'marker': 'added'},
-         {'property': 'setting5',
-          'marker': 'added',
-          'nested': [
-              {'property': 'key5',
-               'marker': 'equal'}
+         {'property': 'follow', 'marker': 'added'},
+         {'property': 'setting1', 'marker': 'equal'},
+         {'property': 'setting2', 'marker': 'removed'},
+         {'property': 'setting3', 'marker': 'changed'},
+         {'property': 'setting4', 'marker': 'added'},
+         {'property': 'setting5', 'marker': 'added', 'nested': [
+              {'property': 'key5', 'marker': 'equal'}
           ]},
-         {'property': 'setting6',
-          'marker': 'without_marker',
-          'nested': [
-              {'property': 'doge',
-               'marker': 'without_marker',
-               'nested': [
-                   {'property': 'wow',
-                    'marker': 'changed'}
+         {'property': 'setting6', 'marker': 'without_marker', 'nested': [
+              {'property': 'doge', 'marker': 'without_marker', 'nested': [
+                   {'property': 'wow', 'marker': 'changed'}
                ]},
-              {'property': 'key',
-               'marker': 'equal'},
-              {'property': 'ops',
-               'marker': 'added'}
+              {'property': 'key', 'marker': 'equal'},
+              {'property': 'ops', 'marker': 'added'}
           ]}
      ]},
-    {'property': 'group1',
-     'marker': 'without_marker',
-     'nested': [
-         {'property': 'baz',
-          'marker': 'changed'},
-         {'property': 'foo',
-          'marker': 'equal'},
-         {'property': 'nest',
-          'marker': 'changed',
-          'nested': [
-              {'property': 'key',
-               'marker': 'equal'}
+    {'property': 'group1', 'marker': 'without_marker', 'nested': [
+         {'property': 'baz', 'marker': 'changed'},
+         {'property': 'foo', 'marker': 'equal'},
+         {'property': 'nest', 'marker': 'changed', 'nested': [
+              {'property': 'key', 'marker': 'equal'}
           ]}
      ]},
-    {'property': 'group2',
-     'marker': 'removed',
-     'nested': [
-         {'property': 'abc',
-          'marker': 'equal'},
-         {'property': 'deep',
-          'marker': 'equal',
-          'nested': [
-              {'property': 'id',
-               'marker': 'equal'}
+    {'property': 'group2', 'marker': 'removed', 'nested': [
+         {'property': 'abc', 'marker': 'equal'},
+         {'property': 'deep', 'marker': 'equal', 'nested': [
+              {'property': 'id', 'marker': 'equal'}
           ]}
      ]},
-    {'property': 'group3',
-     'marker': 'added',
-     'nested': [
-         {'property': 'deep',
-          'marker': 'equal',
-          'nested': [
-              {'property': 'id',
-               'marker': 'equal',
-               'nested': [
-                   {'property': 'number',
-                    'marker': 'equal'}
+    {'property': 'group3', 'marker': 'added', 'nested': [
+         {'property': 'deep', 'marker': 'equal', 'nested': [
+              {'property': 'id', 'marker': 'equal', 'nested': [
+                   {'property': 'number', 'marker': 'equal'}
                ]}
           ]},
-         {'property': 'fee',
-          'marker': 'equal'}
+         {'property': 'fee', 'marker': 'equal'}
      ]}
 ]
 

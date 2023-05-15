@@ -21,7 +21,7 @@ def add_nesting_to_lst_dcts_of_diff(key, dct1, dct2, dct):
         dct['nested'] = parse_plain(dct2[key], dct2[key])
 
 
-def complete_the_lst(dct1, dct2, lst_dcts_of_diff):
+def complete_lst_dcts_of_diff(dct1, dct2, lst_dcts_of_diff):
     for dct in lst_dcts_of_diff:
         key = dct.get('property')
         dct['marker'] = make_marker_for_diff(key, dct1, dct2)
@@ -31,8 +31,8 @@ def complete_the_lst(dct1, dct2, lst_dcts_of_diff):
 
 
 def parse_plain(dct1, dct2):
-    lst_of_diff = create_lst_of_keys(dct1, dct2)
-    lst_dcts_of_diff = create_lst_dcts_of_diff(lst_of_diff)
-    complete_the_lst(dct1, dct2, lst_dcts_of_diff)
+    lst_of_keys = create_lst_of_keys(dct1, dct2)
+    lst_dcts_of_diff = create_lst_dcts_of_diff(lst_of_keys)
+    complete_lst_dcts_of_diff(dct1, dct2, lst_dcts_of_diff)
 
     return lst_dcts_of_diff
