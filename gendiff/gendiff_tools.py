@@ -1,6 +1,5 @@
 import json
 import yaml
-import os
 
 
 def create_lst_of_keys(dct1, dct2):
@@ -51,42 +50,6 @@ def make_marker_for_diff(key, dct1, dct2):
         result = 'added'
 
     return result
-
-
-def flatten(node):
-    lst_of_result = []
-
-    def walk(items):
-        for item in items:
-            if isinstance(item, list):
-                walk(item)
-            else:
-                lst_of_result.append(item)
-
-    walk(node)
-    return lst_of_result
-
-
-def get_lst_of_paths(lst_of_diff):
-    lst_of_result = []
-
-    def walk(node, path):
-        path = os.path.join(path, node.get('property'))
-
-        if 'nested' not in node:
-            return path.replace('/', '.')
-
-        lst_of_nested_property = node.get('nested')
-        output = list(map(
-            lambda item: walk(item, path),
-            lst_of_nested_property
-        ))
-        return flatten(output)
-
-    for element in lst_of_diff:
-        lst_of_result.append(walk(element, ''))
-
-    return lst_of_result
 
 
 def get_value_using_path(dct_input, path_input):

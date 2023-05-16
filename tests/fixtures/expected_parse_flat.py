@@ -1,9 +1,9 @@
-lst_of_diff = [
-    ['follow', 'removed'],
-    ['host', 'equal'],
-    ['proxy', 'removed'],
-    ['timeout', 'changed'],
-    ['verbose', 'added']
+lst_dcts_of_diff = [
+    {'marker': 'removed', 'property': 'follow'},
+    {'marker': 'equal', 'property': 'host'},
+    {'marker': 'removed', 'property': 'proxy'},
+    {'marker': 'changed', 'property': 'timeout'},
+    {'marker': 'added', 'property': 'verbose'}
 ]
 
 dct1 = {
