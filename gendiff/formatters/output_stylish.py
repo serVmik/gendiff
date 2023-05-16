@@ -8,16 +8,19 @@ VALUE_IF_KEY_NOT_IN_DICT = {}
 
 def create_line(dct1, dct2, node, depth_of_dct):
     indent = f'{INDENT}{INDENT_IN_DEPTH * depth_of_dct}'
-    key, marker = node[0], node[1]
+    key = node.get('property')
+    marker = node.get('marker')
+    # key, marker = node[0], node[1]
 
     def get_value_for_add(dct):
         value_for_add = dct.get(key)
+        nesting = node.get('nested')
 
         if isinstance(value_for_add, dict):
             return create_output_stylish(
                 dct1.get(key, VALUE_IF_KEY_NOT_IN_DICT),
                 dct2.get(key, VALUE_IF_KEY_NOT_IN_DICT),
-                node[-1], depth_of_dct + STEP_OF_DEPTH
+                nesting, depth_of_dct + STEP_OF_DEPTH
             )
         else:
             return convert_to_string(value_for_add)
@@ -36,7 +39,7 @@ def create_line(dct1, dct2, node, depth_of_dct):
 
     value = get_value_for_create_line()
     space_after_key_0 = space_after_key_1 = space_after_key_2 = ' '
-    if not value:
+    if value == '':
         space_after_key_0 = ''
 
     if marker == 'changed':
