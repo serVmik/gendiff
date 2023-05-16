@@ -1,12 +1,8 @@
-from gendiff.gendiff_tools import convert_to_string
+from gendiff.gendiff_tools import convert_to_string, get_value
 
 INDENT = '  '
 INDENT_IN_DEPTH = '    '
 STEP_OF_DEPTH = 1
-
-
-def get_value(node, key):
-    return node.get(key) if isinstance(node, dict) else node
 
 
 def get_value_for_add(dct1, dct2, lst_dcts_of_diff, depth_of_dct):
