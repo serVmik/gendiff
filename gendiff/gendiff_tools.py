@@ -47,7 +47,7 @@ def convert_to_string(value):
         replace('False', 'false')
 
 
-def add_quote_to_string(value):
+def create_quote_for_string(value):
     return "" if value in ('true', 'false', 'null') else "'"
 
 

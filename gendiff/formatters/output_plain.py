@@ -1,57 +1,58 @@
-from gendiff.gendiff_tools import add_quote_to_string
+from gendiff.gendiff_tools import create_quote_for_string
 from gendiff.gendiff_tools import convert_to_string
 from gendiff.gendiff_tools import get_value_using_path
 
 
-def create_output_plain(dct1, dct2, lst_of_diff):
+def create_line_with_changed(dct1, dct2, path, lst_dcts_of_diff):
+    value2 = convert_to_string(get_value_using_path(dct2, path))
+    quote2 = create_quote_for_string(value2)
+
+    if 'nested' not in lst_dcts_of_diff:
+        value1 = convert_to_string(get_value_using_path(dct1, path))
+        quote1 = create_quote_for_string(value1)
+        return f"Property '{'.'.join(path)}' was updated. "\
+               f"From {quote1}{value1}{quote1} to {quote2}{value2}{quote2}"
+    else:
+        return f"Property '{'.'.join(path)}' was updated. " \
+               f"From [complex value] to {quote2}{value2}{quote2}"
+
+
+def create_line_with_added(dct2, path, lst_dcts_of_diff):
+    value2 = convert_to_string(get_value_using_path(dct2, path))
+    quote2 = create_quote_for_string(value2)
+
+    if 'nested' not in lst_dcts_of_diff:
+        return f"Property '{'.'.join(path)}' was added with value: " \
+               f"{quote2}{value2}{quote2}"
+    else:
+        return f"Property '{'.'.join(path)}' was added with value: " \
+               f"[complex value]"
+
+
+def create_output_plain(dct1, dct2, lst_dcts_of_diff_input):
     lst_of_lines = []
 
-    def walk(node, path):
-        path += (node.get('property'),)
-        marker = node.get('marker')
+    def walk(lst_dcts_of_diff, path):
+        path += (lst_dcts_of_diff.get('property'),)
+        marker = lst_dcts_of_diff.get('marker')
 
-        if 'nested' not in node and marker == 'added':
-            value2 = convert_to_string(get_value_using_path(dct2, path))
-            quote = add_quote_to_string(value2)
-
-            line = f"Property '{'.'.join(path)}' was added with value: " \
-                   f"{quote}{value2}{quote}"
-            lst_of_lines.append(line)
-
-        elif marker == 'added':
-            line = f"Property '{'.'.join(path)}' was added with value: " \
-                   f"[complex value]"
-            lst_of_lines.append(line)
-
-        elif 'nested' not in node and marker == 'changed':
-            value1 = convert_to_string(get_value_using_path(dct1, path))
-            quote1 = add_quote_to_string(value1)
-            value2 = convert_to_string(get_value_using_path(dct2, path))
-            quote2 = add_quote_to_string(value2)
-
-            line = f"Property '{'.'.join(path)}' was updated. " \
-                   f"From {quote1}{value1}{quote1} to {quote2}{value2}{quote2}"
-            lst_of_lines.append(line)
-
+        if marker == 'added':
+            lst_of_lines.append(
+                create_line_with_added(dct2, path, lst_dcts_of_diff)
+            )
         elif marker == 'changed':
-            value2 = convert_to_string(get_value_using_path(dct2, path))
-            quote = add_quote_to_string(value2)
-
-            line = f"Property '{'.'.join(path)}' was updated. " \
-                   f"From [complex value] to {quote}{value2}{quote}"
-            lst_of_lines.append(line)
-
+            lst_of_lines.append(
+                create_line_with_changed(dct1, dct2, path, lst_dcts_of_diff)
+            )
         elif marker == 'removed':
-            line = f"Property '{'.'.join(path)}' was removed"
-            lst_of_lines.append(line)
+            lst_of_lines.append(f"Property '{'.'.join(path)}' was removed")
 
-        lst_of_nested_property = node.get('nested', [])
         list(map(
             lambda item: walk(item, path),
-            lst_of_nested_property
+            lst_dcts_of_diff.get('nested', [])
         ))
 
-    for element in lst_of_diff:
+    for element in lst_dcts_of_diff_input:
         walk(element, ())
 
     return '\n'.join(lst_of_lines)
