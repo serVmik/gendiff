@@ -19,13 +19,9 @@ def get_value_for_add(dct1, dct2, lst_dcts_of_diff, depth_of_dct):
         return convert_to_string(value_for_add)
 
 
-def create_line(dct1, dct2, lst_dcts_of_diff, depth_of_dct):
+def make_line(value1, value2, lst_dcts_of_diff, result_indent):
     key = lst_dcts_of_diff.get('property')
     marker = lst_dcts_of_diff.get('marker')
-    value1 = get_value_for_add(dct1, dct2, lst_dcts_of_diff, depth_of_dct)
-    value2 = get_value_for_add(dct2, dct1, lst_dcts_of_diff, depth_of_dct)
-
-    result_indent = f'{INDENT}{INDENT_IN_DEPTH * depth_of_dct}'
     space_after_key_1 = '' if not value1 else ' '
     space_after_key_2 = '' if not value2 else ' '
 
@@ -42,6 +38,14 @@ def create_line(dct1, dct2, lst_dcts_of_diff, depth_of_dct):
     else:
         # marker == 'added':
         return f'{result_indent}+ {key}:{space_after_key_2}{value2}'
+
+
+def create_line(dct1, dct2, lst_dcts_of_diff, depth_of_dct):
+    value1 = get_value_for_add(dct1, dct2, lst_dcts_of_diff, depth_of_dct)
+    value2 = get_value_for_add(dct2, dct1, lst_dcts_of_diff, depth_of_dct)
+    result_indent = f'{INDENT}{INDENT_IN_DEPTH * depth_of_dct}'
+
+    return make_line(value1, value2, lst_dcts_of_diff, result_indent)
 
 
 def create_output_stylish(dct1, dct2, lst_dcts_of_diff, depth_of_dct=0):
