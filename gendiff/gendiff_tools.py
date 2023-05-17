@@ -13,13 +13,14 @@ def get_value(node, key):
 def get_value_using_path(dct_input, path_input):
     received_value = []
     start_index_of_key_along_path = 0
+    step_depth_of_path = 1
 
     def walk(dct, path, index):
         key = path[index]
         value = dct.get(key)
 
-        if len(path) > 1 + index:
-            walk(value, path, index + 1)
+        if len(path) > index + 1:
+            walk(value, path, index + step_depth_of_path)
 
         received_value.append(value)
 

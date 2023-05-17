@@ -1,5 +1,5 @@
 gendiff:
-	poetry run gendiff
+	poetry run gendiff --help
 
 debug:
 	poetry run debug_script
