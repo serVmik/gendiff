@@ -56,9 +56,7 @@ def get_space(value):
 
 
 def make_marker_if_changed(dct1, dct2, key):
-    if isinstance(dct1.get(key), dict) and not isinstance(dct2.get(key), dict):
-        return 'changed'
-    elif isinstance(dct1.get(key), dict):
+    if isinstance(dct1.get(key), dict) and isinstance(dct2.get(key), dict):
         return 'without_marker'
     else:
         return 'changed'
