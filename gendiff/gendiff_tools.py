@@ -51,6 +51,10 @@ def create_quote_for_string(value):
     return "" if value in ('true', 'false', 'null') else "'"
 
 
+def get_space(value):
+    return '' if not value else ' '
+
+
 def make_marker_if_changed(dct1, dct2, key):
     if isinstance(dct1.get(key), dict) and not isinstance(dct2.get(key), dict):
         return 'changed'
