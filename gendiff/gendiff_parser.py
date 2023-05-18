@@ -12,18 +12,12 @@ def generate_gendiff(file1, file2, format='stylish'):
 
     match format:
         case 'stylish':
-            result_string = create_output_stylish(
+            return create_output_stylish(
                 dct_from_file1, dct_from_file2, lst_dcts_of_diff
             )
         case 'plain':
-            result_string = create_output_plain(
+            return create_output_plain(
                 dct_from_file1, dct_from_file2, lst_dcts_of_diff
             )
         case 'json':
-            result_string = create_output_json(
-                lst_dcts_of_diff
-            )
-        case _:
-            raise Exception('Unsupported format entered!')
-
-    return result_string
+            return create_output_json(lst_dcts_of_diff)

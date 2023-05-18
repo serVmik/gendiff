@@ -1,9 +1,23 @@
 [tool.poetry]
 name = "hexlet-code"
 version = "0.1.0"
-description = ""
+description = "This program compares two configuration files. The result of the file comparison can be output in different formats, for example: plain ('flat') or json ('JSON format'). The diff is built based on how the content in the second file has changed relative to the first. Keys are displayed in alphabetical order."
 authors = ["Sergei Mikurov <454004@mail.ru>"]
 readme = "README.md"
+repository = "https://github.com/serVmik/python-project-50.git"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Other Audience",
+    "License :: Freeware",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Typing :: Typed"
+]
 packages = [
   { include = "gendiff" },
 ]
@@ -14,7 +28,6 @@ pyyaml = "^6.0"
 
 [tool.poetry.scripts]
 gendiff = "gendiff.scripts.gendiff_script:main"
-debug_script = "gendiff.scripts.debug_script:main"
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^6.0.0"
