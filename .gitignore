@@ -1,8 +1,6 @@
 __pycache__/
 dist/
 .idea/
-for developer/
 .coverage
 coverage.xml
 for_developer/
-debug_script.py

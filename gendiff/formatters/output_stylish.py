@@ -1,8 +1,12 @@
-from gendiff.gendiff_tools import convert_to_string, get_value
+def get_value(node, key):
+    return node.get(key) if isinstance(node, dict) else node
 
-INDENT = '  '
-INDENT_IN_DEPTH = '    '
-STEP_OF_DEPTH = 1
+
+def convert_to_string(value):
+    return str(value). \
+        replace('True', 'true'). \
+        replace('False', 'false'). \
+        replace('None', 'null')
 
 
 def get_value_for_add(dct1, dct2, lst_dcts_of_diff, depth_of_dct):
@@ -13,7 +17,7 @@ def get_value_for_add(dct1, dct2, lst_dcts_of_diff, depth_of_dct):
     if isinstance(value_for_add, dict):
         return create_output_stylish(
             dct1.get(key, {}), dct2.get(key, {}),
-            nesting, depth_of_dct + STEP_OF_DEPTH
+            nesting, depth_of_dct + 1
         )
     else:
         return convert_to_string(value_for_add)
@@ -24,7 +28,7 @@ def create_line(dct1, dct2, lst_dcts_of_diff, depth_of_dct):
     marker = lst_dcts_of_diff.get('marker')
     value1 = get_value_for_add(dct1, dct2, lst_dcts_of_diff, depth_of_dct)
     value2 = get_value_for_add(dct2, dct1, lst_dcts_of_diff, depth_of_dct)
-    result_indent = f'{INDENT}{INDENT_IN_DEPTH * depth_of_dct}'
+    result_indent = f"{'  '}{'    ' * depth_of_dct}"
 
     if marker == 'changed':
         return f'{result_indent}- {key}: {value1}\n' \
@@ -49,5 +53,5 @@ def create_output_stylish(dct1, dct2, lst_dcts_of_diff, depth_of_dct=0):
             create_line(dct1, dct2, element, depth_of_dct)
         )
 
-    lst_of_lines.append(f'{INDENT_IN_DEPTH * depth_of_dct}' + '}')
+    lst_of_lines.append(f"{'    ' * depth_of_dct}" + '}')
     return '\n'.join(lst_of_lines)
