@@ -10,7 +10,11 @@ from gendiff.gendiff_parser import generate_gendiff
     ('tests/fixtures/file1.json',
      'tests/fixtures/file2.yaml',
      'tests/fixtures/expected_output_plain.txt',
-     'plain')
+     'plain'),
+    ('tests/fixtures/file1.json',
+     'tests/fixtures/file2.yaml',
+     'tests/fixtures/expected_output_json.txt',
+     'json')
 ])
 def test_gendiff(file1, file2, expected_txt, format):
     with open(expected_txt, 'r') as expected:
