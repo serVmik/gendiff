@@ -1,4 +1,4 @@
-from gendiff.gendiff_tools import convert_to_string, get_value, get_space
+from gendiff.gendiff_tools import convert_to_string, get_value
 
 INDENT = '  '
 INDENT_IN_DEPTH = '    '
@@ -27,18 +27,18 @@ def create_line(dct1, dct2, lst_dcts_of_diff, depth_of_dct):
     result_indent = f'{INDENT}{INDENT_IN_DEPTH * depth_of_dct}'
 
     if marker == 'changed':
-        return f'{result_indent}- {key}:{get_space(value1)}{value1}\n' \
-               f'{result_indent}+ {key}:{get_space(value2)}{value2}'
+        return f'{result_indent}- {key}: {value1}\n' \
+               f'{result_indent}+ {key}: {value2}'
 
     elif marker == 'equal' or marker == 'without_marker':
-        return f'{result_indent}  {key}:{get_space(value1)}{value1}'
+        return f'{result_indent}  {key}: {value1}'
 
     elif marker == 'removed':
-        return f'{result_indent}- {key}:{get_space(value1)}{value1}'
+        return f'{result_indent}- {key}: {value1}'
 
     else:
         # marker == 'added':
-        return f'{result_indent}+ {key}:{get_space(value2)}{value2}'
+        return f'{result_indent}+ {key}: {value2}'
 
 
 def create_output_stylish(dct1, dct2, lst_dcts_of_diff, depth_of_dct=0):
