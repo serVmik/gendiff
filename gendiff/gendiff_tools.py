@@ -49,7 +49,7 @@ def convert_to_string(value):
 
 
 def create_quote_for_string(value):
-    return "" if value in ('true', 'false', 'null') else "'"
+    return "" if value in ('true', 'false', 'null', '0') else "'"
 
 
 def make_marker_if_changed(dct1, dct2, key):
