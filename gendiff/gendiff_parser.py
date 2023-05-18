@@ -5,7 +5,7 @@ from gendiff.formatters.output_plain import create_output_plain
 from gendiff.formatters.output_json import create_output_json
 
 
-def generate_gendiff(file1, file2, format='stylish'):
+def generate_diff(file1, file2, format='stylish'):
     dct_from_file1 = get_dct_from_file(file1)
     dct_from_file2 = get_dct_from_file(file2)
     lst_dcts_of_diff = parse_plain(dct_from_file1, dct_from_file2)

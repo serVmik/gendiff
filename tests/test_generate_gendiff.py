@@ -1,5 +1,5 @@
 import pytest
-from gendiff.gendiff_parser import generate_gendiff
+from gendiff.gendiff_parser import generate_diff
 
 
 @pytest.mark.parametrize("file1, file2, expected_txt, format", [
@@ -18,7 +18,7 @@ from gendiff.gendiff_parser import generate_gendiff
 ])
 def test_gendiff(file1, file2, expected_txt, format):
     with open(expected_txt, 'r') as expected:
-        assert generate_gendiff(file1, file2, format) == expected.read()
+        assert generate_diff(file1, file2, format) == expected.read()
 
 
 @pytest.mark.parametrize("file1, file2, expected_txt, format", [
@@ -30,4 +30,4 @@ def test_gendiff(file1, file2, expected_txt, format):
 def test_exception(file1, file2, expected_txt, format):
     with pytest.raises(Exception):
         with open(expected_txt, 'r') as expected:
-            assert generate_gendiff(file1, file2, format) == expected.read()
+            assert generate_diff(file1, file2, format) == expected.read()
