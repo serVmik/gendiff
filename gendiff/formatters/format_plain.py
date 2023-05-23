@@ -49,7 +49,7 @@ def create_line_with_added(dct2, path, lst_dcts_of_diff):
                f"{convert_to_str(value2)}"
 
 
-def create_output_plain(dct1, dct2, lst_dcts_of_diff_input):
+def format_plain(dct1, dct2, lst_dcts_of_diff_input):
     lst_of_lines = []
 
     def walk(lst_dcts_of_diff, path):

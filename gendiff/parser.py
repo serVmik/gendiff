@@ -1,4 +1,3 @@
-from gendiff.gendiff_tools import create_lst_of_keys
 from gendiff.gendiff_tools import make_marker_for_diff
 
 
@@ -30,9 +29,9 @@ def complete_lst_dcts_of_diff(dct1, dct2, lst_dcts_of_diff):
     return lst_dcts_of_diff
 
 
-def parse_diff(dct1, dct2):
-    lst_of_keys = create_lst_of_keys(dct1, dct2)
-    lst_dcts_of_diff = create_lst_dcts_of_diff(lst_of_keys)
-    complete_lst_dcts_of_diff(dct1, dct2, lst_dcts_of_diff)
+def parse_diff(dict1, dict2):
+    keys = sorted(list(set(dict1.keys()).union(dict2.keys())))
+    lst_dcts_of_diff = create_lst_dcts_of_diff(keys)
+    complete_lst_dcts_of_diff(dict1, dict2, lst_dcts_of_diff)
 
     return lst_dcts_of_diff
