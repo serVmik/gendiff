@@ -12,10 +12,13 @@ Keys are displayed in alphabetical order.
 
 Use input file formats: json or yaml.  
 
-### "How to install and uninstall gendiff"
-$ python3 -m pip install --user hexlet_code-0.1.0-py3-none-any.whl  
-$ pip uninstall hexlet-code  
-https://asciinema.org/a/gNi5PwHg8yx6oIJXu0pFLFWOI
+### "How to install and uninstall gendiff"  
+$ git clone https://github.com/serVmik/python-project-50.git  
+$ make install  
+$ make build  
+$ make package-install  
+
+$ pip uninstall hexlet-code
 
 ### How to use gendiff:  
 Format "stylish":  
