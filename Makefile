@@ -1,6 +1,3 @@
-gendiff:
-	poetry run gendiff --help
-
 build:
 	poetry build
 
