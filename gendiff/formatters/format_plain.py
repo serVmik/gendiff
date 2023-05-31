@@ -11,28 +11,28 @@ def convert_to_str(value):
         replace('None', 'null')
 
 
-def display_in_format_plain(differences_input):
+def format_plain(diff_input):
     lines = []
 
-    def walk(differences, path):
-        path += (differences.get('property'),)
-        marker = differences.get('marker')
+    def walk(diff, path):
+        path += (diff.get('property'),)
+        status = diff.get('status')
 
-        if marker == 'added':
+        if status == 'added':
             lines.append(f"Property '{'.'.join(path)}' was added with value: "
-                         f"{convert_to_str(differences.get('new_value'))}")
+                         f"{convert_to_str(diff.get('new_value'))}")
 
-        elif marker == 'updated':
+        elif status == 'updated':
             lines.append(f"Property '{'.'.join(path)}' was updated. "
-                         f"From {convert_to_str(differences.get('value'))} "
-                         f"to {convert_to_str(differences.get('new_value'))}")
+                         f"From {convert_to_str(diff.get('old_value'))} "
+                         f"to {convert_to_str(diff.get('new_value'))}")
 
-        elif marker == 'removed':
+        elif status == 'removed':
             lines.append(f"Property '{'.'.join(path)}' was removed")
 
-        list(map(lambda item: walk(item, path), differences.get('nested', [])))
+        list(map(lambda item: walk(item, path), diff.get('nested', [])))
 
-    for element in differences_input:
+    for element in diff_input:
         walk(element, ())
 
     return '\n'.join(lines)

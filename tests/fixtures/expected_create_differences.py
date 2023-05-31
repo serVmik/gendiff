@@ -1,52 +1,52 @@
 differences = [
     {
         "property": "common",
-        "marker": "without_marker",
+        "status": "nested",
         "nested": [
             {
                 "property": "follow",
-                "marker": "added",
+                "status": "added",
                 "new_value": "false"
             },
             {
                 "property": "setting1",
-                "marker": "equal",
+                "status": "equal",
                 "value": "Value 1"
             },
             {
                 "property": "setting2",
-                "marker": "removed",
+                "status": "removed",
                 "value": 200
             },
             {
                 "property": "setting3",
-                "marker": "updated",
+                "status": "updated",
                 "value": "true",
                 "new_value": "null"
             },
             {
                 "property": "setting4",
-                "marker": "added",
+                "status": "added",
                 "new_value": "blah blah"
             },
             {
                 "property": "setting5",
-                "marker": "added",
+                "status": "added",
                 "new_value": {
                     "key5": "value5"
                 }
             },
             {
                 "property": "setting6",
-                "marker": "without_marker",
+                "status": "nested",
                 "nested": [
                     {
                         "property": "doge",
-                        "marker": "without_marker",
+                        "status": "nested",
                         "nested": [
                             {
                                 "property": "wow",
-                                "marker": "updated",
+                                "status": "updated",
                                 "value": "",
                                 "new_value": "so much"
                             }
@@ -54,12 +54,12 @@ differences = [
                     },
                     {
                         "property": "key",
-                        "marker": "equal",
+                        "status": "equal",
                         "value": "value"
                     },
                     {
                         "property": "ops",
-                        "marker": "added",
+                        "status": "added",
                         "new_value": "vops"
                     }
                 ]
@@ -68,22 +68,22 @@ differences = [
     },
     {
         "property": "group1",
-        "marker": "without_marker",
+        "status": "nested",
         "nested": [
             {
                 "property": "baz",
-                "marker": "updated",
+                "status": "updated",
                 "value": "bas",
                 "new_value": "bars"
             },
             {
                 "property": "foo",
-                "marker": "equal",
+                "status": "equal",
                 "value": "bar"
             },
             {
                 "property": "nest",
-                "marker": "updated",
+                "status": "updated",
                 "value": {
                     "key": "value"
                 },
@@ -93,7 +93,7 @@ differences = [
     },
     {
         "property": "group2",
-        "marker": "removed",
+        "status": "removed",
         "value": {
             "abc": 12345,
             "deep": {
@@ -103,7 +103,7 @@ differences = [
     },
     {
         "property": "group3",
-        "marker": "added",
+        "status": "added",
         "new_value": {
             "deep": {
                 "id": {

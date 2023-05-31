@@ -1,65 +1,65 @@
 [
     {
         "property": "common",
-        "marker": "without_marker",
+        "status": "nested",
         "nested": [
             {
                 "property": "follow",
-                "marker": "added",
+                "status": "added",
                 "new_value": false
             },
             {
                 "property": "setting1",
-                "marker": "equal",
-                "value": "Value 1"
+                "status": "equal",
+                "old_value": "Value 1"
             },
             {
                 "property": "setting2",
-                "marker": "removed",
-                "value": 200
+                "status": "removed",
+                "old_value": 200
             },
             {
                 "property": "setting3",
-                "marker": "updated",
-                "value": true,
+                "status": "updated",
+                "old_value": true,
                 "new_value": null
             },
             {
                 "property": "setting4",
-                "marker": "added",
+                "status": "added",
                 "new_value": "blah blah"
             },
             {
                 "property": "setting5",
-                "marker": "added",
+                "status": "added",
                 "new_value": {
                     "key5": "value5"
                 }
             },
             {
                 "property": "setting6",
-                "marker": "without_marker",
+                "status": "nested",
                 "nested": [
                     {
                         "property": "doge",
-                        "marker": "without_marker",
+                        "status": "nested",
                         "nested": [
                             {
                                 "property": "wow",
-                                "marker": "updated",
-                                "value": "",
+                                "status": "updated",
+                                "old_value": "",
                                 "new_value": "so much"
                             }
                         ]
                     },
                     {
                         "property": "key",
-                        "marker": "equal",
-                        "value": "value"
+                        "status": "equal",
+                        "old_value": "value"
                     },
                     {
                         "property": "ops",
-                        "marker": "added",
+                        "status": "added",
                         "new_value": "vops"
                     }
                 ]
@@ -68,23 +68,23 @@
     },
     {
         "property": "group1",
-        "marker": "without_marker",
+        "status": "nested",
         "nested": [
             {
                 "property": "baz",
-                "marker": "updated",
-                "value": "bas",
+                "status": "updated",
+                "old_value": "bas",
                 "new_value": "bars"
             },
             {
                 "property": "foo",
-                "marker": "equal",
-                "value": "bar"
+                "status": "equal",
+                "old_value": "bar"
             },
             {
                 "property": "nest",
-                "marker": "updated",
-                "value": {
+                "status": "updated",
+                "old_value": {
                     "key": "value"
                 },
                 "new_value": "str"
@@ -93,8 +93,8 @@
     },
     {
         "property": "group2",
-        "marker": "removed",
-        "value": {
+        "status": "removed",
+        "old_value": {
             "abc": 12345,
             "deep": {
                 "id": 45
@@ -103,7 +103,7 @@
     },
     {
         "property": "group3",
-        "marker": "added",
+        "status": "added",
         "new_value": {
             "deep": {
                 "id": {
