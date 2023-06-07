@@ -13,4 +13,4 @@ def parse_args():
                         help='set format of output')
 
     args = parser.parse_args()
-    return args.first_filepath, args.second_filepath, args.format
+    return args

@@ -4,8 +4,9 @@ from gendiff.parse_args import parse_args
 
 
 def main():
-    first_file_path, second_file_path, format = parse_args()
-    print(generate_diff(first_file_path, second_file_path, format))
+    args = parse_args()
+    print(generate_diff(args.first_filepath, args.second_filepath,
+                        args.format))
 
 
 if __name__ == '__main__':
