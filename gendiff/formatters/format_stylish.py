@@ -18,25 +18,25 @@ def get_value_for_add(value, depth):
 def create_line(diff, depth):
     key = diff.get('property')
     status = diff.get('status')
-    indent = f"{INDENT}{INDENT_IN_DEPTH * depth}"
+    indent = f'{INDENT}{INDENT_IN_DEPTH * depth}'
 
     if status == 'equal':
         old_value = get_value_for_add(diff.get('old_value'), depth)
-        return f"{indent}  {key}: {old_value}"
+        return f'{indent}  {key}: {old_value}'
     elif status == 'updated':
         old_value = get_value_for_add(diff.get('old_value'), depth)
         new_value = get_value_for_add(diff.get('new_value'), depth)
-        return f"{indent}- {key}: {old_value}\n" \
-               f"{indent}+ {key}: {new_value}"
+        return f'{indent}- {key}: {old_value}\n' \
+               f'{indent}+ {key}: {new_value}'
     elif status == 'nested':
         nested_value = get_value_for_add(diff.get('nested'), depth)
-        return f"{indent}  {key}: {nested_value}"
+        return f'{indent}  {key}: {nested_value}'
     elif status == 'removed':
         old_value = get_value_for_add(diff.get('old_value'), depth)
-        return f"{indent}- {key}: {old_value}"
+        return f'{indent}- {key}: {old_value}'
     elif status == 'added':
         new_value = get_value_for_add(diff.get('new_value'), depth)
-        return f"{indent}+ {key}: {new_value}"
+        return f'{indent}+ {key}: {new_value}'
 
 
 def create_format(diff, depth):
@@ -55,7 +55,7 @@ def create_format(diff, depth):
                 depth
             ))
 
-    lines.append(f"{INDENT_IN_DEPTH * depth}" + '}')
+    lines.append(f'{INDENT_IN_DEPTH * depth}' + '}')
     return '\n'.join(lines)
 
 

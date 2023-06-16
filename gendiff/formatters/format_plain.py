@@ -13,30 +13,28 @@ def convert_to_str(value):
     return converted_value
 
 
-def create_lines(diff, lines, path):
-    path += (diff.get('property'),)
-    status = diff.get('status')
+def create_lines(diff, path_traveled=None):
+    path_traveled = [] if path_traveled is None else path_traveled
+    lines = []
 
-    list(map(lambda item: create_lines(item, lines, path),
-             diff.get('nested', [])))
+    for property_ in diff:
+        status = property_.get('status')
+        path = path_traveled + [property_.get('property')]
 
-    if status == 'added':
-        lines.append(f"Property '{'.'.join(path)}' was added with value: "
-                     f"{convert_to_str(diff.get('new_value'))}")
-    elif status == 'updated':
-        lines.append(f"Property '{'.'.join(path)}' was updated. "
-                     f"From {convert_to_str(diff.get('old_value'))} "
-                     f"to {convert_to_str(diff.get('new_value'))}")
-    elif status == 'removed':
-        lines.append(f"Property '{'.'.join(path)}' was removed")
+        if status == 'added':
+            lines.append(f"Property '{'.'.join(path)}' was added with value: "
+                         f"{convert_to_str(property_.get('new_value'))}")
+        elif status == 'updated':
+            lines.append(f"Property '{'.'.join(path)}' was updated. "
+                         f"From {convert_to_str(property_.get('old_value'))} "
+                         f"to {convert_to_str(property_.get('new_value'))}")
+        elif status == 'removed':
+            lines.append(f"Property '{'.'.join(path)}' was removed")
+        elif status == 'nested':
+            lines.extend(create_lines(property_.get('nested'), path))
 
-    return '\n'.join(lines)
+    return lines
 
 
 def format_plain(diff):
-    result = []
-
-    for element in diff:
-        result.append(create_lines(element, [], ()))
-
-    return '\n'.join(result)
+    return '\n'.join(create_lines(diff))

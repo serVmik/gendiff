@@ -8,7 +8,7 @@ def parse_args():
     parser.add_argument('first_filepath')
     parser.add_argument('second_filepath')
     parser.add_argument('-f', '--format',
-                        default="stylish",
+                        default='stylish',
                         choices=['stylish', 'plain', 'json'],
                         help='set format of output')
 
