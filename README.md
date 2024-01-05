@@ -13,7 +13,9 @@ Keys are displayed in alphabetical order.
 Use input file formats: json or yaml.  
 
 ### "How to install and uninstall gendiff"  
-$ git clone https://github.com/serVmik/python-project-50.git  
+```
+git clone https://github.com/serVmik/python-project-50.git
+```
 $ make install  
 $ make build  
 $ make package-install  
